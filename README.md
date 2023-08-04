@@ -1,8 +1,10 @@
-# Repositório Java JRE e JDK
+Claro, aqui está a versão atualizada com mais emojis:
+
+# Repositório Java JRE e JDK 🚀☕
 
 Este repositório contém informações e instruções para compilar e executar programas Java utilizando o Java Runtime Environment (JRE) e o Java Development Kit (JDK).
 
-## Pré-requisitos
+## Pré-requisitos 📋
 
 Antes de prosseguir, verifique se o Java está instalado em sua máquina. Você pode fazer isso executando o seguinte comando no terminal:
 
@@ -12,7 +14,7 @@ java -version
 
 Se o Java estiver instalado, você verá a versão do Java sendo exibida. Caso contrário, será necessário fazer o download e instalação do JRE ou JDK.
 
-## Instalação
+## Instalação 🛠️
 
 1. Acesse o site oficial da Oracle (https://www.oracle.com/java/technologies/javase-jre8-downloads.html) para baixar o JRE ou JDK mais recente.
 
@@ -22,7 +24,7 @@ Se o Java estiver instalado, você verá a versão do Java sendo exibida. Caso c
 
 4. Após a instalação, você pode verificar se o Java foi instalado corretamente executando novamente o comando `java -version` no terminal.
 
-## Compilando e Executando um Programa Java
+## Compilando e Executando um Programa Java ⚙️
 
 Para compilar e executar um programa Java, siga as seguintes etapas:
 
@@ -48,10 +50,10 @@ java MeuPrograma
 
 O programa será executado e você poderá ver a saída no terminal.
 
-## Contribuição
+## Contribuição 👥
 
 Contribuições para aprimorar este repositório são sempre bem-vindas. Sinta-se à vontade para enviar pull requests com melhorias, correções de erros ou novas funcionalidades.
 
-## Licença
+## Licença 📄
 
 Este repositório é licenciado sob a licença [MIT](https://opensource.org/licenses/MIT).
