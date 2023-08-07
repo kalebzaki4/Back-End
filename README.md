@@ -1,5 +1,3 @@
-Claro, aqui está a versão atualizada com mais emojis:
-
 # Repositório Java JRE e JDK 🚀☕
 
 Este repositório contém informações e instruções para compilar e executar programas Java utilizando o Java Runtime Environment (JRE) e o Java Development Kit (JDK).
@@ -54,6 +52,12 @@ O programa será executado e você poderá ver a saída no terminal.
 
 Contribuições para aprimorar este repositório são sempre bem-vindas. Sinta-se à vontade para enviar pull requests com melhorias, correções de erros ou novas funcionalidades.
 
+## Criador 🧑‍💻
+
+Este repositório foi criado por **kalebzaki4**.
+
 ## Licença 📄
 
 Este repositório é licenciado sob a licença [MIT](https://opensource.org/licenses/MIT).
+
+Esperamos que este repositório seja útil para você em sua jornada de programação Java! Aproveite os recursos disponíveis e compartilhe suas contribuições com a comunidade. 😉👍
