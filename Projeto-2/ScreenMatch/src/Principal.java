@@ -25,7 +25,8 @@ public class Principal {
         lost.exibeFichaTecnica();
         lost.setTemporadas(10);
         lost.setEpisodiosPorTemporada(10);
-        System.out.println("Duração do filme: " + meuFilme.getDuracaoEmMinutos());
-
+        lost.setMinutosPorEpisodio(50);
+        System.out.println("Duração para maratonar este filme " + meuFilme.getDuracaoEmMinutos());
+        
     }
 }
