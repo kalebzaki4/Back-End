@@ -1,7 +1,3 @@
-Claro, aqui está o README atualizado com as descrições dos projetos que você forneceu anteriormente:
-
----
-
 # Back-End Projects 💻
 
 ## AVISO!!!
