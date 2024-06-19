@@ -31,23 +31,13 @@ Bem-vindo ao repositório de projetos de back-end! Aqui você encontrará uma co
 ### Java
 
 - **Projeto 1**: Desafio - Um dos meus desafios concluidos, me serviu para aprender boas praticas de java.
-- **Projeto 2**: ScreenMatch - 
-
-### JavaScript
-
-- **Projeto 1**: Descrição breve do projeto.
-- **Projeto 2**: Descrição breve do projeto.
-
-### Python
-
-- **Projeto 1**: Descrição breve do projeto.
-- **Projeto 2**: Descrição breve do projeto.
+- **Projeto 2**: ScreenMatch - Um projeto do pessoal da Alura para aprender mais sobre Java, principalmente as coisas basicas.
 
 ## Como Usar
 
 1. Clone o repositório:
    ```sh
-   git clone https://github.com/seu-usuario/back-end.git
+   git clone https://github.com/kalebzaki4/back-end.git
    ```
 
 2. Navegue até a pasta do projeto desejado:
