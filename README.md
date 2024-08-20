@@ -17,23 +17,6 @@ Bem-vindo ao meu repositório de projetos de back-end! Aqui, você encontrará d
   - Node.js
 - **Python**
 
-## Projetos 🚀
-
-### Java
-
-- **Desafio**: Um dos meus desafios concluídos, utilizado para aprender boas práticas de Java.
-- **ScreenMatch**: Projeto desenvolvido com o pessoal da Alura, focado no aprendizado das bases de Java.
-
-### JavaScript
-
-- **Projeto 1**: Descrição breve do projeto em JavaScript.
-- **Projeto 2**: Descrição breve do projeto em JavaScript.
-
-### Python
-
-- **Projeto 1**: Descrição breve do projeto em Python.
-- **Projeto 2**: Descrição breve do projeto em Python.
-
 ## Como Usar 📂
 
 1. Clone o repositório:
