@@ -5,12 +5,8 @@ public class Titulo {
     private int anoDeLancamento;
     private boolean incluidoNoPlano;
     private double somaDasAvaliacoes;
-    private int totalAvaliacoes;
-    private int duracaoEmMinuto;
-
-    public int getTotalAvaliacoes() {
-        return totalAvaliacoes;
-    }
+    private int totalDeAvaliacoes;
+    private int duracaoEmMinutos;
 
     public String getNome() {
         return nome;
@@ -24,8 +20,12 @@ public class Titulo {
         return incluidoNoPlano;
     }
 
-    public int getDuracaoEmMinuto() {
-        return duracaoEmMinuto;
+    public int getDuracaoEmMinutos() {
+        return duracaoEmMinutos;
+    }
+
+    public int getTotalDeAvaliacoes() {
+        return totalDeAvaliacoes;
     }
 
     public void setNome(String nome) {
@@ -36,12 +36,12 @@ public class Titulo {
         this.anoDeLancamento = anoDeLancamento;
     }
 
-    public void setDuracaoEmMinuto(int duracaoEmMinuto) {
-        this.duracaoEmMinuto = duracaoEmMinuto;
-    }
-
     public void setIncluidoNoPlano(boolean incluidoNoPlano) {
         this.incluidoNoPlano = incluidoNoPlano;
+    }
+
+    public void setDuracaoEmMinutos(int duracaoEmMinutos) {
+        this.duracaoEmMinutos = duracaoEmMinutos;
     }
 
     public void exibeFichaTecnica(){
@@ -49,13 +49,12 @@ public class Titulo {
         System.out.println("Ano de lançamento: " + anoDeLancamento);
     }
 
-    public void avalia(double nota) {
+    public void avalia(double nota){
         somaDasAvaliacoes += nota;
-        totalAvaliacoes++;
+        totalDeAvaliacoes++;
     }
 
-    public double retornaMediaDasAvaliacoes(){
-        return somaDasAvaliacoes / totalAvaliacoes;
+    public double pegaMedia(){
+        return somaDasAvaliacoes / totalDeAvaliacoes;
     }
-
 }
