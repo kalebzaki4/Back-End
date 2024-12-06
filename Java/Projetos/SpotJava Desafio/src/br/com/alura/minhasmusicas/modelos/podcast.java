@@ -19,4 +19,13 @@ public class podcast extends audio {
     public void setPreview(String preview) {
         this.preview = preview;
     }
+
+    @Override
+    public int getClassificao() {
+        if (this.getTotalCurtidas() > 500) {
+            return 10;
+        } else {
+            return 6;
+        }
+    }
 }
