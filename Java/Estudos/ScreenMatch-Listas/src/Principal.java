@@ -50,5 +50,8 @@ public class Principal {
         episodio.setSerie(lost);
         episodio.setTotalVisualizacoes(300);
         filtro.filtra(episodio);
+
+        var filmeDoPaulo = new Filme();
+
     }
 }
