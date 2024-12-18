@@ -1,7 +1,48 @@
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
 public class GeradorDeFrases {
+
+    private static final Map<String, String> TRADUCOES = new HashMap<>();
+
+    static {
+        // Sujeitos
+        TRADUCOES.put("O gato", "The cat");
+        TRADUCOES.put("A menina", "The girl");
+        TRADUCOES.put("Um cientista", "A scientist");
+        TRADUCOES.put("O dragão", "The dragon");
+        TRADUCOES.put("O professor", "The teacher");
+        TRADUCOES.put("Uma estrela cadente", "A shooting star");
+
+        // Verbos
+        TRADUCOES.put("corre", "runs");
+        TRADUCOES.put("pula", "jumps");
+        TRADUCOES.put("descobre", "discovers");
+        TRADUCOES.put("queima", "burns");
+        TRADUCOES.put("explica", "explains");
+        TRADUCOES.put("cai", "falls");
+
+        // Objetos
+        TRADUCOES.put("no jardim", "in the garden");
+        TRADUCOES.put("no parque", "in the park");
+        TRADUCOES.put("um segredo", "a secret");
+        TRADUCOES.put("a floresta mágica", "the magical forest");
+        TRADUCOES.put("um experimento", "an experiment");
+        TRADUCOES.put("em alta velocidade", "at high speed");
+
+        // Extras
+        TRADUCOES.put("rapidamente", "quickly");
+        TRADUCOES.put("com coragem", "with courage");
+        TRADUCOES.put("enquanto voa", "while flying");
+        TRADUCOES.put("num castelo perdido", "in a lost castle");
+        TRADUCOES.put("com muita energia", "with a lot of energy");
+
+        // Conjunções
+        TRADUCOES.put("e", "and");
+        TRADUCOES.put("mas", "but");
+    }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -98,32 +139,10 @@ public class GeradorDeFrases {
     }
 
     private static String traduzirFraseParaIngles(String frasePt) {
-        return frasePt
-                .replace("O gato", "The cat")
-                .replace("A menina", "The girl")
-                .replace("Um cientista", "A scientist")
-                .replace("O dragão", "The dragon")
-                .replace("O professor", "The teacher")
-                .replace("Uma estrela cadente", "A shooting star")
-                .replace("corre", "runs")
-                .replace("pula", "jumps")
-                .replace("descobre", "discovers")
-                .replace("queima", "burns")
-                .replace("explica", "explains")
-                .replace("cai", "falls")
-                .replace("no jardim", "in the garden")
-                .replace("no parque", "in the park")
-                .replace("um segredo", "a secret")
-                .replace("a floresta mágica", "the magical forest")
-                .replace("um experimento", "an experiment")
-                .replace("em alta velocidade", "at high speed")
-                .replace("rapidamente", "quickly")
-                .replace("com coragem", "with courage")
-                .replace("enquanto voa", "while flying")
-                .replace("num castelo perdido", "in a lost castle")
-                .replace("com muita energia", "with a lot of energy")
-                .replace("e", "and")
-                .replace("mas", "but")
-                .toLowerCase();
+        String fraseEn = frasePt;
+        for (Map.Entry<String, String> entry : TRADUCOES.entrySet()) {
+            fraseEn = fraseEn.replace(entry.getKey(), entry.getValue());
+        }
+        return fraseEn.toLowerCase();
     }
 }
