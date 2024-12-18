@@ -5,43 +5,54 @@ import java.util.Scanner;
 
 public class GeradorDeFrases {
 
+    // Enum para categorias de palavras
+    private enum Categoria {
+        SUJEITO, VERBO, OBJETO, EXTRA, CONJUNCAO
+    }
+
+    // Mapa de traduções dinâmicas
     private static final Map<String, String> TRADUCOES = new HashMap<>();
 
     static {
         // Sujeitos
-        TRADUCOES.put("O gato", "The cat");
-        TRADUCOES.put("A menina", "The girl");
-        TRADUCOES.put("Um cientista", "A scientist");
-        TRADUCOES.put("O dragão", "The dragon");
-        TRADUCOES.put("O professor", "The teacher");
-        TRADUCOES.put("Uma estrela cadente", "A shooting star");
+        adicionarTraducao(Categoria.SUJEITO, "O gato", "The cat");
+        adicionarTraducao(Categoria.SUJEITO, "A menina", "The girl");
+        adicionarTraducao(Categoria.SUJEITO, "Um cientista", "A scientist");
+        adicionarTraducao(Categoria.SUJEITO, "O dragão", "The dragon");
+        adicionarTraducao(Categoria.SUJEITO, "O professor", "The teacher");
+        adicionarTraducao(Categoria.SUJEITO, "Uma estrela cadente", "A shooting star");
 
         // Verbos
-        TRADUCOES.put("corre", "runs");
-        TRADUCOES.put("pula", "jumps");
-        TRADUCOES.put("descobre", "discovers");
-        TRADUCOES.put("queima", "burns");
-        TRADUCOES.put("explica", "explains");
-        TRADUCOES.put("cai", "falls");
+        adicionarTraducao(Categoria.VERBO, "corre", "runs");
+        adicionarTraducao(Categoria.VERBO, "pula", "jumps");
+        adicionarTraducao(Categoria.VERBO, "descobre", "discovers");
+        adicionarTraducao(Categoria.VERBO, "queima", "burns");
+        adicionarTraducao(Categoria.VERBO, "explica", "explains");
+        adicionarTraducao(Categoria.VERBO, "cai", "falls");
 
         // Objetos
-        TRADUCOES.put("no jardim", "in the garden");
-        TRADUCOES.put("no parque", "in the park");
-        TRADUCOES.put("um segredo", "a secret");
-        TRADUCOES.put("a floresta mágica", "the magical forest");
-        TRADUCOES.put("um experimento", "an experiment");
-        TRADUCOES.put("em alta velocidade", "at high speed");
+        adicionarTraducao(Categoria.OBJETO, "no jardim", "in the garden");
+        adicionarTraducao(Categoria.OBJETO, "no parque", "in the park");
+        adicionarTraducao(Categoria.OBJETO, "um segredo", "a secret");
+        adicionarTraducao(Categoria.OBJETO, "a floresta mágica", "the magical forest");
+        adicionarTraducao(Categoria.OBJETO, "um experimento", "an experiment");
+        adicionarTraducao(Categoria.OBJETO, "em alta velocidade", "at high speed");
 
         // Extras
-        TRADUCOES.put("rapidamente", "quickly");
-        TRADUCOES.put("com coragem", "with courage");
-        TRADUCOES.put("enquanto voa", "while flying");
-        TRADUCOES.put("num castelo perdido", "in a lost castle");
-        TRADUCOES.put("com muita energia", "with a lot of energy");
+        adicionarTraducao(Categoria.EXTRA, "rapidamente", "quickly");
+        adicionarTraducao(Categoria.EXTRA, "com coragem", "with courage");
+        adicionarTraducao(Categoria.EXTRA, "enquanto voa", "while flying");
+        adicionarTraducao(Categoria.EXTRA, "num castelo perdido", "in a lost castle");
+        adicionarTraducao(Categoria.EXTRA, "com muita energia", "with a lot of energy");
 
         // Conjunções
-        TRADUCOES.put("e", "and");
-        TRADUCOES.put("mas", "but");
+        adicionarTraducao(Categoria.CONJUNCAO, "e", "and");
+        adicionarTraducao(Categoria.CONJUNCAO, "mas", "but");
+    }
+
+    // Método para adicionar traduções ao mapa
+    private static void adicionarTraducao(Categoria categoria, String pt, String en) {
+        TRADUCOES.put(pt, en);
     }
 
     public static void main(String[] args) {
@@ -113,11 +124,20 @@ public class GeradorDeFrases {
         scanner.close();
     }
 
+    // Método para gerar frases em português
     private static String gerarFrasePortugues(Random random, int nivel) {
-        String[] sujeitos = {"O gato", "A menina", "Um cientista", "O dragão", "O professor", "Uma estrela cadente"};
-        String[] verbos = {"corre", "pula", "descobre", "queima", "explica", "cai"};
-        String[] objetos = {"no jardim", "no parque", "um segredo", "a floresta mágica", "um experimento", "em alta velocidade"};
-        String[] extras = {"rapidamente", "com coragem", "enquanto voa", "num castelo perdido", "com muita energia"};
+        String[] sujeitos = TRADUCOES.keySet().stream()
+                .filter(key -> TRADUCOES.get(key).startsWith("The") || TRADUCOES.get(key).startsWith("A "))
+                .toArray(String[]::new);
+        String[] verbos = TRADUCOES.keySet().stream()
+                .filter(key -> TRADUCOES.get(key).endsWith("s"))
+                .toArray(String[]::new);
+        String[] objetos = TRADUCOES.keySet().stream()
+                .filter(key -> TRADUCOES.get(key).contains("the") || TRADUCOES.get(key).contains("a "))
+                .toArray(String[]::new);
+        String[] extras = TRADUCOES.keySet().stream()
+                .filter(key -> TRADUCOES.get(key).contains("with") || TRADUCOES.get(key).contains("while"))
+                .toArray(String[]::new);
 
         String frase = sujeitos[random.nextInt(sujeitos.length)] + " " +
                 verbos[random.nextInt(verbos.length)] + " " +
@@ -138,6 +158,7 @@ public class GeradorDeFrases {
         return frase + ".";
     }
 
+    // Método para traduzir frases para inglês
     private static String traduzirFraseParaIngles(String frasePt) {
         String fraseEn = frasePt;
         for (Map.Entry<String, String> entry : TRADUCOES.entrySet()) {
