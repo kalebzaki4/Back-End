@@ -2,6 +2,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class GeradorDeFrases {
 
@@ -104,7 +106,8 @@ public class GeradorDeFrases {
                 break;
             }
 
-            if (respostaJogador.equalsIgnoreCase(fraseIngles)) {
+            // Comparar respostas ignorando pontuação e maiúsculas/minúsculas
+            if (compararRespostas(respostaJogador, fraseIngles)) {
                 pontos++;
                 System.out.println("Correto! Você ganhou 1 ponto.");
 
@@ -161,9 +164,21 @@ public class GeradorDeFrases {
     // Método para traduzir frases para inglês
     private static String traduzirFraseParaIngles(String frasePt) {
         String fraseEn = frasePt;
+
+        // Usar expressões regulares para substituir palavras inteiras
         for (Map.Entry<String, String> entry : TRADUCOES.entrySet()) {
-            fraseEn = fraseEn.replace(entry.getKey(), entry.getValue());
+            fraseEn = fraseEn.replaceAll("\\b" + Pattern.quote(entry.getKey()) + "\\b", entry.getValue());
         }
+
         return fraseEn.toLowerCase();
+    }
+
+    // Método para comparar respostas ignorando pontuação e maiúsculas/minúsculas
+    private static boolean compararRespostas(String respostaJogador, String respostaCorreta) {
+        // Remover pontuação e converter para letras minúsculas
+        String respostaJogadorLimpa = respostaJogador.replaceAll("[^a-zA-Z ]", "").toLowerCase();
+        String respostaCorretaLimpa = respostaCorreta.replaceAll("[^a-zA-Z ]", "").toLowerCase();
+
+        return respostaJogadorLimpa.equals(respostaCorretaLimpa);
     }
 }
