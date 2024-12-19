@@ -34,7 +34,7 @@ public class Principal {
                 }
                 break; // Sai do loop caso o nome seja válido
             } while (true);
-
+    
             System.out.println("Digite o ano de lançamento do filme: ");
             anoDePublicacao = sc.nextLine();
 
