@@ -1,8 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.regex.Matcher;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class GeradorDeFrases {
@@ -129,36 +125,37 @@ public class GeradorDeFrases {
 
     // Método para gerar frases em português
     private static String gerarFrasePortugues(Random random, int nivel) {
-        String[] sujeitos = TRADUCOES.keySet().stream()
-                .filter(key -> TRADUCOES.get(key).startsWith("The") || TRADUCOES.get(key).startsWith("A "))
-                .toArray(String[]::new);
-        String[] verbos = TRADUCOES.keySet().stream()
-                .filter(key -> TRADUCOES.get(key).endsWith("s"))
-                .toArray(String[]::new);
-        String[] objetos = TRADUCOES.keySet().stream()
-                .filter(key -> TRADUCOES.get(key).contains("the") || TRADUCOES.get(key).contains("a "))
-                .toArray(String[]::new);
-        String[] extras = TRADUCOES.keySet().stream()
-                .filter(key -> TRADUCOES.get(key).contains("with") || TRADUCOES.get(key).contains("while"))
-                .toArray(String[]::new);
+        List<String> sujeitos = filtrarPalavrasPorCategoria(Categoria.SUJEITO);
+        List<String> verbos = filtrarPalavrasPorCategoria(Categoria.VERBO);
+        List<String> objetos = filtrarPalavrasPorCategoria(Categoria.OBJETO);
+        List<String> extras = filtrarPalavrasPorCategoria(Categoria.EXTRA);
+        List<String> conjuncoes = filtrarPalavrasPorCategoria(Categoria.CONJUNCAO);
 
-        String frase = sujeitos[random.nextInt(sujeitos.length)] + " " +
-                verbos[random.nextInt(verbos.length)] + " " +
-                objetos[random.nextInt(objetos.length)];
+        StringBuilder frase = new StringBuilder();
+        frase.append(sujeitos.get(random.nextInt(sujeitos.size()))).append(" ");
+        frase.append(verbos.get(random.nextInt(verbos.size()))).append(" ");
+        frase.append(objetos.get(random.nextInt(objetos.size())));
 
         if (nivel > 2) {
-            frase += " " + extras[random.nextInt(extras.length)];
+            frase.append(" ").append(extras.get(random.nextInt(extras.size())));
         }
 
         if (nivel > 5) {
-            String conjuncao = random.nextBoolean() ? "e" : "mas";
-            frase += " " + conjuncao + " " +
-                    sujeitos[random.nextInt(sujeitos.length)].toLowerCase() + " " +
-                    verbos[random.nextInt(verbos.length)] + " " +
-                    objetos[random.nextInt(objetos.length)];
+            String conjuncao = conjuncoes.get(random.nextInt(conjuncoes.size()));
+            frase.append(" ").append(conjuncao).append(" ");
+            frase.append(sujeitos.get(random.nextInt(sujeitos.size())).toLowerCase()).append(" ");
+            frase.append(verbos.get(random.nextInt(verbos.size()))).append(" ");
+            frase.append(objetos.get(random.nextInt(objetos.size())));
         }
 
-        return frase + ".";
+        return frase.append(".").toString();
+    }
+
+    // Método para filtrar palavras por categoria
+    private static List<String> filtrarPalavrasPorCategoria(Categoria categoria) {
+        return TRADUCOES.keySet().stream()
+                .filter(key -> TRADUCOES.get(key).startsWith(categoria.name().charAt(0) == 'S' ? "The" : ""))
+                .toList();
     }
 
     // Método para traduzir frases para inglês
