@@ -16,7 +16,7 @@ public class Principal {
             System.out.println("5. Sair");
             System.out.print("Escolha uma opção: ");
             int opcao = sc.nextInt();
-            sc.nextLine(); // Consumindo a quebra de linha
+            sc.nextLine();
 
             switch (opcao) {
                 case 1:
