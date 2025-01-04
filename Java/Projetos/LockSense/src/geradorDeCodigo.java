@@ -1,3 +1,9 @@
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -5,14 +11,32 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class geradorDeCodigo {
-    private static String codigoConfirmacao;
-    private static LocalDateTime dataExpiracao;
+    private static String codigoConfirmacao; // Armazena o código de confirmação gerado
+    private static LocalDateTime dataExpiracao; // Armazena a data de expiração do código
+
+    // Classe interna para representar um usuário no JSON
+    private static class Usuario {
+        String nome;
+        String numero;
+        String codigoSeguranca;
+        String cpf;
+        String rg;
+    }
+
+    // Classe interna para representar a lista de usuários no JSON
+    private static class ListaUsuarios {
+        List<Usuario> usuarios;
+    }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Criar lista de inscrições fixas
-        List<PACKAGE_NAME.dadosSeguranca> inscricoes = PACKAGE_NAME.dadosSeguranca.criarListaInscricoes();
+        // Carregar os dados do JSON
+        List<Usuario> usuarios = carregarUsuariosDoJSON("dadosPerfil.json");
+        if (usuarios == null) {
+            System.out.println("Erro ao carregar os dados do JSON. Encerrando o programa.");
+            return;
+        }
 
         System.out.println("========================================");
         System.out.println("Bem-vindo ao Sistema de Segurança");
@@ -106,14 +130,14 @@ public class geradorDeCodigo {
             }
             if (tentativasRestantes == 0) break;
 
-            // Verificar se os dados coincidem com algum registro na lista
+            // Verificar se os dados coincidem com algum registro no JSON
             boolean acessoConcedido = false;
-            for (PACKAGE_NAME.dadosSeguranca dadosSegurancaValida : inscricoes) {
-                if (nome.equalsIgnoreCase(dadosSegurancaValida.getNome()) && // Ignora maiúsculas/minúsculas
-                        numero.equals(dadosSegurancaValida.getNumero()) &&
-                        codigoSeguranca.equals(dadosSegurancaValida.getCodigoSeguranca()) &&
-                        cpf.equals(dadosSegurancaValida.getCpf()) &&
-                        rg.equals(dadosSegurancaValida.getRg())) {
+            for (Usuario usuario : usuarios) {
+                if (nome.equalsIgnoreCase(usuario.nome) && // Ignora maiúsculas/minúsculas
+                        numero.equals(usuario.numero) &&
+                        codigoSeguranca.equals(usuario.codigoSeguranca) &&
+                        cpf.equals(usuario.cpf) &&
+                        rg.equals(usuario.rg)) {
                     acessoConcedido = true;
                     break;
                 }
@@ -161,6 +185,18 @@ public class geradorDeCodigo {
         System.out.println("========================================");
 
         scanner.close();
+    }
+
+    private static List<Usuario> carregarUsuariosDoJSON(String caminhoArquivo) {
+        try (FileReader reader = new FileReader(caminhoArquivo)) {
+            Gson gson = new Gson();
+            Type tipoListaUsuarios = new TypeToken<ListaUsuarios>() {}.getType();
+            ListaUsuarios listaUsuarios = gson.fromJson(reader, tipoListaUsuarios);
+            return listaUsuarios.usuarios;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     // Método para gerar um novo código de confirmação
