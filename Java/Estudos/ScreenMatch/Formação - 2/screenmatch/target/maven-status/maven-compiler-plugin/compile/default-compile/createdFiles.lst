@@ -1,0 +1,5 @@
+br\com\alura\screenmatch\service\ConverteDados.class
+br\com\alura\screenmatch\model\DadosSerie.class
+br\com\alura\screenmatch\service\ConsumoApi.class
+br\com\alura\screenmatch\service\IConverteDados.class
+br\com\alura\screenmatch\ScreenmatchApplication.class
