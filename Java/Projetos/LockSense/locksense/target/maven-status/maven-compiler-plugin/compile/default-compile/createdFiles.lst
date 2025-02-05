@@ -1,1 +1,5 @@
-com\empresa\UsuarioCadastro.class
+com\empresa\SistemaCadastro.class
+com\empresa\Usuario.class
+com\empresa\SistemaLogin.class
+com\empresa\Main.class
+com\empresa\CodigoAcesso.class

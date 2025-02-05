@@ -2,12 +2,13 @@ package com.empresa;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
-import java.util.Random;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Random;
+import java.util.Scanner;
+import java.time.LocalDateTime;
 
 public class SistemaLogin {
     private static final String ARQUIVO_USUARIO = "usuario.json";
@@ -74,8 +75,24 @@ public class SistemaLogin {
         objectMapper.registerModule(new JavaTimeModule());
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Digite o código de 6 dígitos para validar: ");
-        int codigoDigitado = scanner.nextInt();
+        int codigoDigitado = 0;
+        boolean codigoValido = false;
+
+        // Laço para garantir que o código seja um número de 6 dígitos
+        while (!codigoValido) {
+            System.out.print("Digite o código de 6 dígitos para validar: ");
+            if (scanner.hasNextInt()) {
+                codigoDigitado = scanner.nextInt();
+                if (String.valueOf(codigoDigitado).length() == 6) {
+                    codigoValido = true;  // Código é válido
+                } else {
+                    System.out.println("O código deve ter 6 dígitos. Tente novamente.");
+                }
+            } else {
+                System.out.println("Entrada inválida. Por favor, digite um número de 6 dígitos.");
+                scanner.next(); // Consumir a entrada inválida
+            }
+        }
 
         try {
             Usuario usuario = objectMapper.readValue(new File(ARQUIVO_USUARIO), Usuario.class);

@@ -1,69 +1,56 @@
 package com.empresa;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class SistemaCadastro {
-    // Lista de usuários cadastrados
-    private List<Usuario> usuarios = new ArrayList<>();
+    private static final String ARQUIVO_USUARIO = "usuario.json";
 
-    public static void main(String[] args) {
-        SistemaCadastro sistema = new SistemaCadastro();
+    public void cadastrarUsuario() {
+        Scanner scanner = new Scanner(System.in);
 
-        // Cadastrando usuários
-        sistema.cadastrarUsuario("kaleb", "senha123");
-        sistema.cadastrarUsuario("maria", "1234senha");
-
-        // Verificando credenciais
-        boolean autenticado = sistema.verificarCredenciais("kaleb", "senha123");
-        System.out.println("Autenticação: " + (autenticado ? "Bem-vindo!" : "Falha na autenticação."));
-    }
-
-    // Método para cadastrar um novo usuário
-    public void cadastrarUsuario(String nome, String senha) {
-        // Criptografando a senha
-        String senhaHash = criptografarSenha(senha);
-
-        // Criando o objeto de usuário e adicionando na lista
-        Usuario usuario = new Usuario(nome, senhaHash);
-        usuarios.add(usuario);
-        System.out.println("Usuário " + nome + " cadastrado com sucesso.");
-    }
-
-    // Método para verificar se as credenciais de login estão corretas
-    public boolean verificarCredenciais(String nome, String senha) {
-        for (Usuario usuario : usuarios) {
-            if (usuario.getNome().equals(nome) && usuario.getSenhaHash().equals(criptografarSenha(senha))) {
-                return true;
+        String nome = "";
+        while (nome.length() < 4) {
+            System.out.println("Digite seu nome (mínimo de 4 caracteres): ");
+            nome = scanner.nextLine();
+            if (nome.length() < 4) {
+                System.out.println("Nome muito curto. Por favor, digite um nome com pelo menos 4 caracteres.");
             }
         }
-        return false;
-    }
 
-    // Método para criptografar a senha (simulação simples)
-    private String criptografarSenha(String senha) {
-        return senha + "_hash"; // Apenas um exemplo simples, normalmente você usaria uma biblioteca como bcrypt
-    }
-
-    // Classe Usuario representando o usuário no sistema
-    public class Usuario {
-        private String nome;
-        private String senhaHash;
-
-        // Construtor
-        public Usuario(String nome, String senhaHash) {
-            this.nome = nome;
-            this.senhaHash = senhaHash;
+        String email = "";
+        while (!email.contains("@") || !email.contains(".")) {
+            System.out.println("Digite seu e-mail: ");
+            email = scanner.nextLine();
+            if (!email.contains("@") || !email.contains(".")) {
+                System.out.println("E-mail inválido. Por favor, insira um e-mail válido.");
+            }
         }
 
-        // Getter para nome
-        public String getNome() {
-            return nome;
+        String senha = "";
+        while (senha.length() < 6) {
+            System.out.println("Digite uma senha (mínimo de 6 caracteres): ");
+            senha = scanner.nextLine();
+            if (senha.length() < 6) {
+                System.out.println("Senha muito curta. Por favor, digite uma senha com pelo menos 6 caracteres.");
+            }
         }
 
-        // Getter para senhaHash
-        public String getSenhaHash() {
-            return senhaHash;
+        Usuario usuario = new Usuario(nome, email, senha, null);
+        salvarUsuario(usuario);
+        System.out.println("Cadastro realizado com sucesso!");
+    }
+
+    private void salvarUsuario(Usuario usuario) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            objectMapper.writeValue(new File(ARQUIVO_USUARIO), usuario);
+            System.out.println("Dados salvos em " + ARQUIVO_USUARIO);
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar o usuário.");
+            e.printStackTrace();
         }
     }
 }
