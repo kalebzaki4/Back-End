@@ -15,19 +15,19 @@ public class SistemaLogin {
 
     public void login() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\n=== Login ===");
-        System.out.print("Digite seu e-mail: ");
+        System.out.println("\n=== 🔐 Login ===");
+        System.out.print("✉️ Digite seu e-mail: ");
         String emailInput = scanner.nextLine();
-        System.out.print("Digite sua senha: ");
+        System.out.print("🔑 Digite sua senha: ");
         String senhaInput = scanner.nextLine();
 
         Usuario usuario = carregarUsuario();
 
         if (usuario != null && usuario.getEmail().equals(emailInput) && usuario.getSenha().equals(senhaInput)) {
-            System.out.println("Login realizado com sucesso!");
+            System.out.println("✅ Login realizado com sucesso!");
             gerarCodigoAcesso(usuario);
         } else {
-            System.out.println("Credenciais inválidas. Login não realizado.");
+            System.out.println("❌ Credenciais inválidas. Login não realizado.");
         }
     }
 
@@ -38,7 +38,7 @@ public class SistemaLogin {
         try {
             return objectMapper.readValue(new File(ARQUIVO_USUARIO), Usuario.class);
         } catch (IOException e) {
-            System.out.println("Nenhum usuário cadastrado. Faça o cadastro primeiro.");
+            System.out.println("⚠️ Nenhum usuário cadastrado. Faça o cadastro primeiro.");
             return null;
         }
     }
@@ -49,8 +49,8 @@ public class SistemaLogin {
         LocalDateTime validade = LocalDateTime.now().plusHours(24);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
-        System.out.println("Seu código de 6 dígitos é: " + codigo);
-        System.out.println("Este código é válido até: " + validade.format(formatter));
+        System.out.println("🔢 Seu código de 6 dígitos é: " + codigo);
+        System.out.println("⏳ Este código é válido até: " + validade.format(formatter));
 
         CodigoAcesso codigoAcesso = new CodigoAcesso(codigo, validade);
         usuario.setCodigoAcesso(codigoAcesso);
@@ -63,9 +63,9 @@ public class SistemaLogin {
 
         try {
             objectMapper.writeValue(new File(ARQUIVO_USUARIO), usuario);
-            System.out.println("Código de acesso salvo com sucesso.");
+            System.out.println("💾 Código de acesso salvo com sucesso.");
         } catch (IOException e) {
-            System.out.println("Erro ao salvar o código.");
+            System.out.println("❌ Erro ao salvar o código.");
             e.printStackTrace();
         }
     }
@@ -78,19 +78,18 @@ public class SistemaLogin {
         int codigoDigitado = 0;
         boolean codigoValido = false;
 
-        // Laço para garantir que o código seja um número de 6 dígitos
         while (!codigoValido) {
-            System.out.print("Digite o código de 6 dígitos para validar: ");
+            System.out.print("🔢 Digite o código de 6 dígitos para validar: ");
             if (scanner.hasNextInt()) {
                 codigoDigitado = scanner.nextInt();
                 if (String.valueOf(codigoDigitado).length() == 6) {
-                    codigoValido = true;  // Código é válido
+                    codigoValido = true;
                 } else {
-                    System.out.println("O código deve ter 6 dígitos. Tente novamente.");
+                    System.out.println("⚠️ O código deve ter 6 dígitos. Tente novamente.");
                 }
             } else {
-                System.out.println("Entrada inválida. Por favor, digite um número de 6 dígitos.");
-                scanner.next(); // Consumir a entrada inválida
+                System.out.println("❌ Entrada inválida. Por favor, digite um número de 6 dígitos.");
+                scanner.next();
             }
         }
 
@@ -104,7 +103,7 @@ public class SistemaLogin {
                 System.out.println("❌ Código inválido ou expirado.");
             }
         } catch (IOException e) {
-            System.out.println("Erro ao ler o arquivo de usuário.");
+            System.out.println("⚠️ Erro ao ler o arquivo de usuário.");
         }
     }
 }
