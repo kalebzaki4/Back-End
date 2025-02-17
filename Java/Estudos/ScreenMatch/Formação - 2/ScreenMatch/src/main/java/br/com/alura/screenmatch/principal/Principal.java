@@ -24,7 +24,7 @@ public class Principal {
     private final String ENDERECO = "https://www.omdbapi.com/?t=";
     private final String API_KEY = "&apikey=6585022c";
 
-    public void exibeMenu(){
+    public void exibeMenu() {
         System.out.println("Digite o nome da série para busca");
         var nomeSerie = leitura.nextLine();
         var json = consumo.obterDados(ENDERECO + nomeSerie.replace(" ", "+") + API_KEY);
@@ -33,8 +33,8 @@ public class Principal {
 
         List<DadosTemporada> temporadas = new ArrayList<>();
 
-        for (int i = 1; i<=dados.totalTemporadas(); i++){
-            json = consumo.obterDados(ENDERECO + nomeSerie.replace(" ", "+") +"&season=" + i + API_KEY);
+        for (int i = 1; i <= dados.totalTemporadas(); i++) {
+            json = consumo.obterDados(ENDERECO + nomeSerie.replace(" ", "+") + "&season=" + i + API_KEY);
             DadosTemporada dadosTemporada = conversor.obterDados(json, DadosTemporada.class);
             temporadas.add(dadosTemporada);
         }
