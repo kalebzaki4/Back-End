@@ -1,6 +1,6 @@
 # Back-End Projects 💻
 
-## AVISO!!!
+## AVISO!!
 
 Este repositório contém uma coleção de projetos de back-end que desenvolvi usando Java, JavaScript e Python. Sinta-se à vontade para explorar, replicar e personalizar estes projetos conforme suas necessidades. Todos os projetos aqui são de código aberto e estão disponíveis para cópia sem quaisquer restrições de direitos autorais.
 
