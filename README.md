@@ -14,7 +14,7 @@ Bem-vindo ao meu repositório de projetos de back-end! Aqui, você encontrará d
 
 - **Java**
 - **JavaScript**
-  - Node.js
+  - Node.js.
 - **Python**
 
 ## Como Usar 📂
