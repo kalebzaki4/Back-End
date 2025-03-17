@@ -1,4 +1,4 @@
-package br.com.alura.screenmatch.service;
+package br.com.aplicacao.screenmatch.service;
 
 import java.io.IOException;
 import java.net.URI;
@@ -6,7 +6,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class ConsumoApi {
+public class ConsumirApi {
 
     public String obterDados(String endereco) {
         HttpClient client = HttpClient.newHttpClient();
