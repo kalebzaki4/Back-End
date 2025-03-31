@@ -5,8 +5,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -52,14 +50,8 @@ public class AdopetConsoleApplication {
     }
 
     private static void cadastrarAbrigo() throws IOException, InterruptedException {
-        HttpClient client = HttpClient.newHttpClient();
         String uri = "http://localhost:8080/abrigos";
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(uri))
-                .method("GET", HttpRequest.BodyPublishers.noBody())
-                .build();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        String responseBody = response.body();
+        String responseBody = disparaRequisicaoGet(uri);
         JsonArray jsonArray = JsonParser.parseString(responseBody).getAsJsonArray();
         System.out.println("Abrigos cadastrados:");
 
@@ -85,15 +77,9 @@ public class AdopetConsoleApplication {
         json.addProperty("telefone", telefone);
         json.addProperty("email", email);
 
-        HttpClient client = HttpClient.newHttpClient();
         String uri = "http://localhost:8080/abrigos";
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(uri))
-                .header("Content-Type", "application/json")
-                .method("POST", HttpRequest.BodyPublishers.ofString(json.toString()))
-                .build();
+        HttpResponse<String> response = disparaRequisicaoPost(uri, json.toString());
 
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         if (response.statusCode() == 200) {
             System.out.println("Abrigo cadastrado com sucesso!");
             System.out.println(response.body());
@@ -107,20 +93,15 @@ public class AdopetConsoleApplication {
         System.out.println("Digite o id ou nome do abrigo:");
         String idOuNome = new Scanner(System.in).nextLine();
 
-        HttpClient client = HttpClient.newHttpClient();
         String uri = "http://localhost:8080/abrigos/" + idOuNome + "/pets";
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(uri))
-                .method("GET", HttpRequest.BodyPublishers.noBody())
-                .build();
+        String responseBody = disparaRequisicaoGet(uri);
 
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        if (response.statusCode() != 200) {
-            System.out.println("ID ou nome do abrigo não encontrado!");
+        if (responseBody.equals("ID ou nome do abrigo não encontrado!")) {
+            System.out.println(responseBody);
             return;
         }
 
-        JsonArray jsonArray = JsonParser.parseString(response.body()).getAsJsonArray();
+        JsonArray jsonArray = JsonParser.parseString(responseBody).getAsJsonArray();
         System.out.println("Pets cadastrados:");
         for (JsonElement element : jsonArray) {
             JsonObject jsonObject = element.getAsJsonObject();
@@ -135,5 +116,28 @@ public class AdopetConsoleApplication {
 
     private static void importarPetsDoAbrigo() {
         System.out.println("Função de importação de pets ainda não implementada completamente.");
+    }
+
+    private static String disparaRequisicaoGet(String uri) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(uri))
+                .method("GET", HttpRequest.BodyPublishers.noBody())
+                .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() != 200) {
+            return "ID ou nome do abrigo não encontrado!";
+        }
+        return response.body();
+    }
+
+    private static HttpResponse<String> disparaRequisicaoPost(String uri, String body) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(uri))
+                .header("Content-Type", "application/json")
+                .method("POST", HttpRequest.BodyPublishers.ofString(body))
+                .build();
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 }
