@@ -6,18 +6,18 @@ app.use(express.json());
 const livros = [
   {
     id: 1,
-    titulo: "O Senhor dos Anéis"
+    titulo: "O Senhor dos Anéis",
   },
   {
     id: 2,
-    titulo: "O Hobbit"
-  }
-]
+    titulo: "O Hobbit",
+  },
+];
 
 function buscaLivro(id) {
-  return livros.findIndex(livro => {
+  return livros.findIndex((livro) => {
     return livro.id === Number(id);
-  })
+  });
 }
 
 app.get("/", (req, res) => {
@@ -31,7 +31,7 @@ app.get("/livros", (req, res) => {
 app.get("/livros/:id", (req, res) => {
   const index = buscaLivro(req.params.id);
   res.status(200).json(livros[index]);
-})
+});
 
 app.post("/livros", (req, res) => {
   livros.push(req.body);
@@ -51,3 +51,5 @@ app.delete("/livros/:id", (req, res) => {
 });
 
 export default app;
+
+// mongodb+srv://<db_username>:<db_password>@cluster0.kknmmsl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
