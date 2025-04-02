@@ -9,6 +9,10 @@ class UserAPI extends RESTdatasource {
     async getUsers() {
         return this.get('/users');
     }
+
+    async getUserById(id) {
+        return this.get(`/users/${id}`);
+    }
 }
 
 module .exports = UserAPI;
