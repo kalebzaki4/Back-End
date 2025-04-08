@@ -1,25 +1,16 @@
 package br.com.alura;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import br.com.alura.client.ClientHttpConfiguration;
+import br.com.alura.service.AbrigoService;
+import br.com.alura.service.PetService;
 import java.util.Scanner;
-
-import static br.com.alura.service.PetService.importarPetsDoAbrigo;
-import static br.com.alura.service.PetService.listarPetsDoAbrigo;
 
 public class AdopetConsoleApplication {
 
     public static void main(String[] args) {
+        ClientHttpConfiguration client = new ClientHttpConfiguration();
+        AbrigoService abrigoService = new AbrigoService(client);
+        PetService petService = new PetService(client);
         System.out.println("##### BOAS VINDAS AO SISTEMA ADOPET CONSOLE #####");
         try {
             int opcaoEscolhida = 0;
@@ -35,13 +26,13 @@ public class AdopetConsoleApplication {
                 opcaoEscolhida = Integer.parseInt(textoDigitado);
 
                 if (opcaoEscolhida == 1) {
-                    listarAbrigo();
+                    abrigoService.listarAbrigo();
                 } else if (opcaoEscolhida == 2) {
-                    cadastrarAbrigo();
+                    abrigoService.cadastrarAbrigo();
                 } else if (opcaoEscolhida == 3) {
-                    listarPetsDoAbrigo();
+                    petService.listarPetsDoAbrigo();
                 } else if (opcaoEscolhida == 4) {
-                    importarPetsDoAbrigo();
+                    petService.importarPetsDoAbrigo();
                 } else if (opcaoEscolhida == 5) {
                     break;
                 } else {
@@ -53,67 +44,5 @@ public class AdopetConsoleApplication {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private static void listarAbrigo() throws IOException, InterruptedException {
-        HttpClient client = HttpClient.newHttpClient();
-        String uri = "http://localhost:8080/abrigos";
-        HttpResponse<String> response = dispararRequisicaoGet(client, uri);
-        String responseBody = response.body();
-        JsonArray jsonArray = JsonParser.parseString(responseBody).getAsJsonArray();
-        System.out.println("Abrigos cadastrados:");
-        for (JsonElement element : jsonArray) {
-            JsonObject jsonObject = element.getAsJsonObject();
-            long id = jsonObject.get("id").getAsLong();
-            String nome = jsonObject.get("nome").getAsString();
-            System.out.println(id +" - " +nome);
-        }
-    }
-
-    private static void cadastrarAbrigo() throws IOException, InterruptedException {
-        System.out.println("Digite o nome do abrigo:");
-        String nome = new Scanner(System.in).nextLine();
-        System.out.println("Digite o telefone do abrigo:");
-        String telefone = new Scanner(System.in).nextLine();
-        System.out.println("Digite o email do abrigo:");
-        String email = new Scanner(System.in).nextLine();
-
-        JsonObject json = new JsonObject();
-        json.addProperty("nome", nome);
-        json.addProperty("telefone", telefone);
-        json.addProperty("email", email);
-
-        HttpClient client = HttpClient.newHttpClient();
-        String uri = "http://localhost:8080/abrigos";
-        HttpResponse<String> response = dispararRequisicaoPost(client, uri, json);
-        int statusCode = response.statusCode();
-        String responseBody = response.body();
-        if (statusCode == 200) {
-            System.out.println("Abrigo cadastrado com sucesso!");
-            System.out.println(responseBody);
-        } else if (statusCode == 400 || statusCode == 500) {
-            System.out.println("Erro ao cadastrar o abrigo:");
-            System.out.println(responseBody);
-        }
-    }
-
-
-    public static HttpResponse<String> dispararRequisicaoGet(HttpClient client, String uri) throws IOException, InterruptedException {
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(uri))
-                .method("GET", HttpRequest.BodyPublishers.noBody())
-                .build();
-        return client.send(request, HttpResponse.BodyHandlers.ofString());
-    }
-
-    public static HttpResponse<String> dispararRequisicaoPost(HttpClient client, String uri, JsonObject json) throws IOException, InterruptedException {
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(uri))
-                .header("Content-Type", "application/json")
-                .method("POST", HttpRequest.BodyPublishers.ofString(json.toString()))
-                .build();
-
-        return client.send(request, HttpResponse.BodyHandlers.ofString());
-
     }
 }
