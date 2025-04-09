@@ -1,4 +1,7 @@
 import express from "express";
+import conectaNaDatabase from "./config/dbConnect.js";
+
+const conexao = await conectaNaDatabase();
 
 const app = express();
 app.use(express.json());
@@ -52,4 +55,4 @@ app.delete("/livros/:id", (req, res) => {
 
 export default app;
 
-// mongodb+srv://<db_username>:<db_password>@cluster0.kknmmsl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
