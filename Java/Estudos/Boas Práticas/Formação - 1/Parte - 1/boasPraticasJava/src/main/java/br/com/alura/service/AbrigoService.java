@@ -29,7 +29,7 @@ public class AbrigoService {
             JsonObject jsonObject = element.getAsJsonObject();
             long id = jsonObject.get("id").getAsLong();
             String nome = jsonObject.get("nome").getAsString();
-            System.out.println(id +" - " +nome);
+            System.out.println(id + " - " + nome);
         }
     }
 
