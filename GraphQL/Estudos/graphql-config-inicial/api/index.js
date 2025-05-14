@@ -1,22 +1,21 @@
-const { ApolloServer, gql } = require("apollo-server");
+const { ApolloServer } = require('apollo-server')
+const userSchema = require('./user/schema/user.graphql')
+const userResolvers = require('./user/resolvers/userResolvers')
+const UsersAPI = require('./user/datasource/user')
 
-const users = [
-  {
-    nome: "Lucas",
-    ativo: true,
-  },
-  {
-    nome: "João",
-    ativo: false,
-  },
-];
+const typeDefs = [userSchema]
+const resolvers = [userResolvers]
 
-const typeDefs = gql`
-  type Users {
-    nome: String!
-    ativo: Boolean!
-    email: String
+const server = new ApolloServer( { 
+  typeDefs,
+  resolvers,
+  dataSources: () => {
+    return {
+      usersAPI: new UsersAPI()
+    }
   }
-`;
+} )
 
-const server = new ApolloServer({ typeDefs, resolvers });
+server.listen().then(({url}) => {
+  console.log(`Servidor rodando na porta ${url}`)
+})
