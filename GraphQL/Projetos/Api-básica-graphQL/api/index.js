@@ -14,6 +14,16 @@ const typeDefs = gql`
     title: String!
     genre: String!
   }
+
+  type Query {
+    animes: [Anime!]!
+  }
 `;
+
+const resolvers = {
+  Query: {
+    animes: () => animes,
+  },
+};
 
 const server = new ApolloServer({ typeDefs, resolvers });
