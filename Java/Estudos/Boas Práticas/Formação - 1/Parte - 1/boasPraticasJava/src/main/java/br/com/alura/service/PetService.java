@@ -53,7 +53,7 @@ public class PetService {
         System.out.println("Digite o nome do arquivo CSV:");
         String nomeArquivo = new Scanner(System.in).nextLine();
 
-        BufferedReader reader = null;
+        BufferedReader reader = null;   
         try {
             reader = new BufferedReader(new FileReader(nomeArquivo));
         } catch (IOException e) {
