@@ -1,8 +1,23 @@
 package com.locksense.locksense.Functions;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.locksense.locksense.Models.Usuario;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
+import static com.locksense.locksense.Functions.FazerLogin.FazerLogin;
+
 public class CadastrarUsuario {
+
+    private static final String ARQUIVO = "usuarios.json";
+    private static final Gson gson = new Gson();
 
     public static void cadastrarUsuario() {
         Scanner scanner = new Scanner(System.in);
@@ -27,7 +42,31 @@ public class CadastrarUsuario {
                 System.out.println("As senhas não conferem. Tente novamente.");
             }
         } while (!senha.equals(confirmaSenha));
+
+        Usuario novoUsuario = new Usuario(gmail, nome, senha);
+
+        List<Usuario> usuarios = carregarUsuarios();
+        usuarios.add(novoUsuario);
+        salvarUsuarios(usuarios);
+
         System.out.println("Usuário cadastrado com sucesso!");
-        CriaCodigo();
+        FazerLogin();
+    }
+
+    private static List<Usuario> carregarUsuarios() {
+        try (FileReader reader = new FileReader(ARQUIVO)) {
+            Type listType = new TypeToken<ArrayList<Usuario>>() {}.getType();
+            return gson.fromJson(reader, listType);
+        } catch (IOException e) {
+            return new ArrayList<>();
+        }
+    }
+
+    private static void salvarUsuarios(List<Usuario> usuarios) {
+        try (FileWriter writer = new FileWriter(ARQUIVO)) {
+            gson.toJson(usuarios, writer);
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar usuários: " + e.getMessage());
+        }
     }
 }
