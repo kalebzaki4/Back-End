@@ -10,6 +10,9 @@ public class CadastrarUsuario {
         System.out.print("Digite seu Gmail: ");
         String gmail = scanner.nextLine();
 
+        System.out.print("Digite seu nome: ");
+        String nome = scanner.nextLine();
+
         String senha;
         String confirmaSenha;
 
@@ -25,5 +28,6 @@ public class CadastrarUsuario {
             }
         } while (!senha.equals(confirmaSenha));
         System.out.println("Usuário cadastrado com sucesso!");
+        CriaCodigo();
     }
 }
