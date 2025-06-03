@@ -18,7 +18,9 @@ public class LocksenseApplication {
 		System.out.println("escolha sua opção abaixo: ");
 		System.out.println("1 - Cadastrar usuario.");
 		System.out.println("2 - Fazer login.");
+
 		int opcao = Integer.parseInt(scanner.nextLine());
+
 		if (opcao == 1) {
 			cadastrarUsuario();
 		} else if (opcao == 2) {
