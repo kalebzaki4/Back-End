@@ -1,4 +1,4 @@
-package br.com.alura.domain;
+package br.com.estudos.domain;
 
 public class Abrigo {
     public Abrigo(String nome, String telefone, String email) {
