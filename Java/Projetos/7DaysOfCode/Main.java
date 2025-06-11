@@ -2,8 +2,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -20,7 +19,6 @@ public class Main {
         String json = response.body();
 
         String jsonMovies = json.substring(json.indexOf("[") + 1, json.lastIndexOf("]"));
-
         String[] moviesArray = jsonMovies.split("},\\{");
 
         List<String> titles = parseAttribute(moviesArray, "\"title\":\"");
@@ -28,22 +26,26 @@ public class Main {
         List<String> years = parseAttribute(moviesArray, "\"year\":\"");
         List<String> ratings = parseAttribute(moviesArray, "\"imDbRating\":\"");
 
-        System.out.println("\nTítulos:");
-        titles.forEach(System.out::println);
+        List<Movie> movies = new ArrayList<>();
+        for (int i = 0; i < titles.size(); i++) {
+            movies.add(new Movie(titles.get(i), images.get(i), years.get(i), ratings.get(i)));
+        }
 
-        System.out.println("\nImagens:");
-        images.forEach(System.out::println);
+        Collections.sort(movies);
+        System.out.println("\nOrdenados por nota:");
+        movies.forEach(System.out::println);
 
-        System.out.println("\nAnos:");
-        years.forEach(System.out::println);
+        movies.sort(Comparator.comparing(Movie::title));
+        System.out.println("\nOrdenados por título:");
+        movies.forEach(System.out::println);
 
-        System.out.println("\nNotas:");
-        ratings.forEach(System.out::println);
+        movies.sort(Comparator.comparing(Movie::year));
+        System.out.println("\nOrdenados por ano:");
+        movies.forEach(System.out::println);
     }
 
     private static List<String> parseAttribute(String[] moviesArray, String attributeKey) {
         List<String> result = new ArrayList<>();
-
         for (String movie : moviesArray) {
             int start = movie.indexOf(attributeKey);
             if (start != -1) {
@@ -55,7 +57,6 @@ public class Main {
                 }
             }
         }
-
         return result;
     }
 }
