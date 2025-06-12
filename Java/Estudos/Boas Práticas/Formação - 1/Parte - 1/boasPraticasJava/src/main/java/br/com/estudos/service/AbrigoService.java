@@ -1,4 +1,4 @@
-package br.com.alura.service;
+package br.com.estudos.service;
 
 import br.com.alura.client.ClientHttpConfiguration;
 import br.com.alura.domain.Abrigo;
