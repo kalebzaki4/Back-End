@@ -1,7 +1,7 @@
-package br.com.estudos.service;
+package br.com.alura.service;
 
-import br.com.estudos.client.ClientHttpConfiguration;
-import br.com.estudos.domain.Abrigo;
+import br.com.alura.client.ClientHttpConfiguration;
+import br.com.alura.domain.Abrigo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class AbrigoService {
 
-    private final ClientHttpConfiguration client;
+    private ClientHttpConfiguration client;
 
     public AbrigoService(ClientHttpConfiguration client) {
         this.client = client;
@@ -24,22 +24,29 @@ public class AbrigoService {
         String responseBody = response.body();
         Abrigo[] abrigos = new ObjectMapper().readValue(responseBody, Abrigo[].class);
         List<Abrigo> abrigoList = Arrays.stream(abrigos).toList();
+        if (abrigoList.isEmpty()) {
+            System.out.println("Não há abrigos cadastrados");
+        } else {
+            mostrarAbrigos(abrigoList);
+        }
+    }
+
+    private void mostrarAbrigos(List<Abrigo> abrigos) {
         System.out.println("Abrigos cadastrados:");
-        for (Abrigo abrigo : abrigoList) {
-            long id = abrigo.getId() != null ? abrigo.getId() : -1;
+        for (Abrigo abrigo : abrigos) {
+            long id = abrigo.getId();
             String nome = abrigo.getNome();
-            System.out.println(id + " - " + nome);
+            System.out.println(id +" - " +nome);
         }
     }
 
     public void cadastrarAbrigo() throws IOException, InterruptedException {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Digite o nome do abrigo:");
-        String nome = scanner.nextLine();
+        String nome = new Scanner(System.in).nextLine();
         System.out.println("Digite o telefone do abrigo:");
-        String telefone = scanner.nextLine();
+        String telefone = new Scanner(System.in).nextLine();
         System.out.println("Digite o email do abrigo:");
-        String email = scanner.nextLine();
+        String email = new Scanner(System.in).nextLine();
 
         Abrigo abrigo = new Abrigo(nome, telefone, email);
 
@@ -47,7 +54,6 @@ public class AbrigoService {
         HttpResponse<String> response = client.dispararRequisicaoPost(uri, abrigo);
         int statusCode = response.statusCode();
         String responseBody = response.body();
-
         if (statusCode == 200) {
             System.out.println("Abrigo cadastrado com sucesso!");
             System.out.println(responseBody);

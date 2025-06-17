@@ -1,4 +1,4 @@
-package br.com.estudos.domain;
+package br.com.alura.domain;
 
 public class Pet {
 

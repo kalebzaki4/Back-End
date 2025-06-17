@@ -1,14 +1,9 @@
-package br.com.estudos.domain;
+package br.com.alura.domain;
 
 public class Abrigo {
 
-    private Long id;
-    private String nome;
-    private String telefone;
-    private String email;
-    private Pet[] pets;
-
     public Abrigo() {
+
     }
 
     public Abrigo(String nome, String telefone, String email) {
@@ -17,12 +12,14 @@ public class Abrigo {
         this.email = email;
     }
 
+    private Long id;
+    private String nome;
+    private String telefone;
+    private String email;
+    private Pet[] pets;
+
     public Long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -41,7 +38,14 @@ public class Abrigo {
         return pets;
     }
 
-    public void setPets(Pet[] pets) {
-        this.pets = pets;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return """
+               "id":%s,"nome":"%s","telefone":"%s","email":"%s"
+               """.formatted(this.id, this.nome, this.telefone, this.email);
     }
 }
