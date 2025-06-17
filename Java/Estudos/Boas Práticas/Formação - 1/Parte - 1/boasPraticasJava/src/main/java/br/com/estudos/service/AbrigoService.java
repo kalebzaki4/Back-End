@@ -1,12 +1,8 @@
 package br.com.estudos.service;
 
-import br.com.alura.client.ClientHttpConfiguration;
-import br.com.alura.domain.Abrigo;
+import br.com.estudos.client.ClientHttpConfiguration;
+import br.com.estudos.domain.Abrigo;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import java.io.IOException;
 import java.net.http.HttpResponse;
@@ -16,7 +12,7 @@ import java.util.Scanner;
 
 public class AbrigoService {
 
-    private ClientHttpConfiguration client;
+    private final ClientHttpConfiguration client;
 
     public AbrigoService(ClientHttpConfiguration client) {
         this.client = client;
@@ -30,19 +26,20 @@ public class AbrigoService {
         List<Abrigo> abrigoList = Arrays.stream(abrigos).toList();
         System.out.println("Abrigos cadastrados:");
         for (Abrigo abrigo : abrigoList) {
-            long id = abrigo.getId();
+            long id = abrigo.getId() != null ? abrigo.getId() : -1;
             String nome = abrigo.getNome();
-            System.out.println(id +" - " +nome);
+            System.out.println(id + " - " + nome);
         }
     }
 
     public void cadastrarAbrigo() throws IOException, InterruptedException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Digite o nome do abrigo:");
-        String nome = new Scanner(System.in).nextLine();
+        String nome = scanner.nextLine();
         System.out.println("Digite o telefone do abrigo:");
-        String telefone = new Scanner(System.in).nextLine();
+        String telefone = scanner.nextLine();
         System.out.println("Digite o email do abrigo:");
-        String email = new Scanner(System.in).nextLine();
+        String email = scanner.nextLine();
 
         Abrigo abrigo = new Abrigo(nome, telefone, email);
 
@@ -50,6 +47,7 @@ public class AbrigoService {
         HttpResponse<String> response = client.dispararRequisicaoPost(uri, abrigo);
         int statusCode = response.statusCode();
         String responseBody = response.body();
+
         if (statusCode == 200) {
             System.out.println("Abrigo cadastrado com sucesso!");
             System.out.println(responseBody);

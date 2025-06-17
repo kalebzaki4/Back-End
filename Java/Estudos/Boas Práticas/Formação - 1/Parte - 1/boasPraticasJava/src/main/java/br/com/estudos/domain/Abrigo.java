@@ -2,8 +2,13 @@ package br.com.estudos.domain;
 
 public class Abrigo {
 
-    public Abrigo() {
+    private Long id;
+    private String nome;
+    private String telefone;
+    private String email;
+    private Pet[] pets;
 
+    public Abrigo() {
     }
 
     public Abrigo(String nome, String telefone, String email) {
@@ -12,14 +17,12 @@ public class Abrigo {
         this.email = email;
     }
 
-    private Long id;
-    private String nome;
-    private String telefone;
-    private String email;
-    private Pet[] pets;
-
     public Long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -36,5 +39,9 @@ public class Abrigo {
 
     public Pet[] getPets() {
         return pets;
+    }
+
+    public void setPets(Pet[] pets) {
+        this.pets = pets;
     }
 }
