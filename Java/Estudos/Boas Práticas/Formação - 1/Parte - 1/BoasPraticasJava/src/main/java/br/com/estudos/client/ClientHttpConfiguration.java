@@ -1,7 +1,6 @@
-package br.com.alura.client;
+package br.com.estudos.client;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.net.URI;

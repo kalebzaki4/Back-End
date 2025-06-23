@@ -1,7 +1,7 @@
-package br.com.alura.service;
+package br.com.estudos.service;
 
-import br.com.alura.client.ClientHttpConfiguration;
-import br.com.alura.domain.Abrigo;
+import br.com.estudos.client.ClientHttpConfiguration;
+import br.com.estudos.domain.Abrigo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
