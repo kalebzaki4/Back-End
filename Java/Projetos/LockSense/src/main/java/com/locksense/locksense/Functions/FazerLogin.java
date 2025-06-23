@@ -30,7 +30,14 @@ public class FazerLogin {
         for (Usuario u : usuarios) {
             if (u.getGmail().equals(gmail) && u.getSenha().equals(senha)) {
                 System.out.println("Login realizado com sucesso!");
-                criaCodigo();
+                int codigo = criaCodigo();
+                System.out.print("Digite o código de acesso: ");
+                String codigoDigitado = scanner.nextLine();
+                if (String.valueOf(codigo).equals(codigoDigitado)) {
+                    System.out.println("Acesso liberado. Bem-vindo!");
+                } else {
+                    System.out.println("Código incorreto. Acesso negado.");
+                }
                 return;
             }
         }
@@ -41,7 +48,8 @@ public class FazerLogin {
     private static List<Usuario> carregarUsuarios() {
         try (FileReader reader = new FileReader(ARQUIVO)) {
             Type listType = new TypeToken<List<Usuario>>() {}.getType();
-            return gson.fromJson(reader, listType);
+            List<Usuario> usuarios = gson.fromJson(reader, listType);
+            return usuarios != null ? usuarios : List.of();
         } catch (Exception e) {
             return List.of();
         }

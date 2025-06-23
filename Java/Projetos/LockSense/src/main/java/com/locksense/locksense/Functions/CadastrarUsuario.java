@@ -56,7 +56,8 @@ public class CadastrarUsuario {
     private static List<Usuario> carregarUsuarios() {
         try (FileReader reader = new FileReader(ARQUIVO)) {
             Type listType = new TypeToken<ArrayList<Usuario>>() {}.getType();
-            return gson.fromJson(reader, listType);
+            List<Usuario> usuarios = gson.fromJson(reader, listType);
+            return usuarios != null ? usuarios : new ArrayList<>();
         } catch (IOException e) {
             return new ArrayList<>();
         }
