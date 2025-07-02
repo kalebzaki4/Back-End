@@ -1,0 +1,15 @@
+C:\Users\kalebzaki\Documents\GitHub\Back-End\C#\Estudos\ScreenSound\Parte - 2\OrientacaoObjetos\obj\Debug\net8.0\OrientacaoObjetos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kalebzaki\Documents\GitHub\Back-End\C#\Estudos\ScreenSound\Parte - 2\OrientacaoObjetos\obj\Debug\net8.0\OrientacaoObjetos.AssemblyInfoInputs.cache
+C:\Users\kalebzaki\Documents\GitHub\Back-End\C#\Estudos\ScreenSound\Parte - 2\OrientacaoObjetos\obj\Debug\net8.0\OrientacaoObjetos.AssemblyInfo.cs
+C:\Users\kalebzaki\Documents\GitHub\Back-End\C#\Estudos\ScreenSound\Parte - 2\OrientacaoObjetos\obj\Debug\net8.0\OrientacaoObjetos.csproj.CoreCompileInputs.cache
+C:\Users\kalebzaki\Documents\GitHub\Back-End\C#\Estudos\ScreenSound\Parte - 2\OrientacaoObjetos\obj\Debug\net8.0\OrientacaoObjetos.sourcelink.json
+C:\Users\kalebzaki\Documents\GitHub\Back-End\C#\Estudos\ScreenSound\Parte - 2\OrientacaoObjetos\bin\Debug\net8.0\OrientacaoObjetos.exe
+C:\Users\kalebzaki\Documents\GitHub\Back-End\C#\Estudos\ScreenSound\Parte - 2\OrientacaoObjetos\bin\Debug\net8.0\OrientacaoObjetos.deps.json
+C:\Users\kalebzaki\Documents\GitHub\Back-End\C#\Estudos\ScreenSound\Parte - 2\OrientacaoObjetos\bin\Debug\net8.0\OrientacaoObjetos.runtimeconfig.json
+C:\Users\kalebzaki\Documents\GitHub\Back-End\C#\Estudos\ScreenSound\Parte - 2\OrientacaoObjetos\bin\Debug\net8.0\OrientacaoObjetos.dll
+C:\Users\kalebzaki\Documents\GitHub\Back-End\C#\Estudos\ScreenSound\Parte - 2\OrientacaoObjetos\bin\Debug\net8.0\OrientacaoObjetos.pdb
+C:\Users\kalebzaki\Documents\GitHub\Back-End\C#\Estudos\ScreenSound\Parte - 2\OrientacaoObjetos\obj\Debug\net8.0\OrientacaoObjetos.dll
+C:\Users\kalebzaki\Documents\GitHub\Back-End\C#\Estudos\ScreenSound\Parte - 2\OrientacaoObjetos\obj\Debug\net8.0\refint\OrientacaoObjetos.dll
+C:\Users\kalebzaki\Documents\GitHub\Back-End\C#\Estudos\ScreenSound\Parte - 2\OrientacaoObjetos\obj\Debug\net8.0\OrientacaoObjetos.pdb
+C:\Users\kalebzaki\Documents\GitHub\Back-End\C#\Estudos\ScreenSound\Parte - 2\OrientacaoObjetos\obj\Debug\net8.0\OrientacaoObjetos.genruntimeconfig.cache
+C:\Users\kalebzaki\Documents\GitHub\Back-End\C#\Estudos\ScreenSound\Parte - 2\OrientacaoObjetos\obj\Debug\net8.0\ref\OrientacaoObjetos.dll
