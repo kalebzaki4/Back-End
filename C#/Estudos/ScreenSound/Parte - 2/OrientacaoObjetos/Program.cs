@@ -1,14 +1,14 @@
 ﻿Musica musica1 = new Musica();
 musica1.nome = "Bohemian Rhapsody";
 musica1.artista = "Queen";
-
-Console.WriteLine($"Nome da musica {musica1.nome}");
-Console.WriteLine($"Artista da musica {musica1.artista}");
-
+musica1.duracao = 354;
+musica1.disponivel = true;
 
 Musica musica2 = new Musica();
 musica2.nome = "Imagine";
 musica2.artista = "John Lennon";
+musica2.duracao = 183;
+musica2.disponivel = false;
 
-Console.WriteLine($"Nome da musica {musica2.nome}");
-Console.WriteLine($"Artista da musica {musica3.artista}");
+musica1.ExibirFichaTecnica();
+musica2.ExibirFichaTecnica();
