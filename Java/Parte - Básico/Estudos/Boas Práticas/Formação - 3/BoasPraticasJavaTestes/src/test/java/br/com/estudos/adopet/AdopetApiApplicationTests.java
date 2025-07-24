@@ -1,4 +1,4 @@
-package br.com.alura.adopet;
+package br.com.estudos.adopet;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

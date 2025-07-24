@@ -4,7 +4,7 @@ import br.com.alura.adopet.api.model.Pet;
 import br.com.alura.adopet.api.model.ProbabilidadeAdocao;
 import br.com.alura.adopet.api.model.TipoPet;
 
-public class  CalculadoraProbabilidadeAdocao {
+public class CalculadoraProbabilidadeAdocao {
 
     public ProbabilidadeAdocao calcular(Pet pet) {
         int nota = calcularNota(pet);
