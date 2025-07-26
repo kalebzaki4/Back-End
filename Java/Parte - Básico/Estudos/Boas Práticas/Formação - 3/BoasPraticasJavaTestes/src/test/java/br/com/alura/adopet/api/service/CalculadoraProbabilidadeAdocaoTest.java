@@ -14,9 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class CalculadoraProbabilidadeAdocaoTest {
 
     @Test
-    void cenario01(){
+    void deveriaRetornarProbabilidadeAltaParaPetComIdadeBaixaEPesoBaixo(){
         //idade 4 anos e 4kg - ALTA
 
+        //ARRANGE
         Abrigo abrigo = new Abrigo(new CadastroAbrigoDto(
                 "Abrigo feliz",
                 "94999999999",
@@ -30,15 +31,17 @@ class CalculadoraProbabilidadeAdocaoTest {
                 "Cinza",
                 4.0f
         ), abrigo);
-
         CalculadoraProbabilidadeAdocao calculadora = new CalculadoraProbabilidadeAdocao();
+
+        //ACT
         ProbabilidadeAdocao probabilidade = calculadora.calcular(pet);
 
+        //ASSERT
         Assertions.assertEquals(ProbabilidadeAdocao.ALTA,probabilidade);
     }
 
     @Test
-    void cenario02(){
+    void deveriaRetornarProbabilidadeMediaParaPetComIdadeAltaEPesoBaixo(){
         //idade 15 anos e 4kg - MEDIA
 
         Abrigo abrigo = new Abrigo(new CadastroAbrigoDto(
@@ -54,8 +57,9 @@ class CalculadoraProbabilidadeAdocaoTest {
                 "Cinza",
                 4.0f
         ), abrigo);
-
         CalculadoraProbabilidadeAdocao calculadora = new CalculadoraProbabilidadeAdocao();
+
+
         ProbabilidadeAdocao probabilidade = calculadora.calcular(pet);
 
         Assertions.assertEquals(ProbabilidadeAdocao.MEDIA,probabilidade);
