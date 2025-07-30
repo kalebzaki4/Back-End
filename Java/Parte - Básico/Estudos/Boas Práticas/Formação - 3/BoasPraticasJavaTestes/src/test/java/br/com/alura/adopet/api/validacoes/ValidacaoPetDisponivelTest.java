@@ -1,6 +1,7 @@
 package br.com.alura.adopet.api.validacoes;
 
 import br.com.alura.adopet.api.dto.SolicitacaoAdocaoDto;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,6 +16,7 @@ class ValidacaoPetDisponivelTest {
         ValidacaoPetDisponivel validacao = new ValidacaoPetDisponivel();
 
         validacao.validar(dto);
+        Assertions.assertDoesNotThrow(() -> validacao.validar(dto));
     }
 
 }
