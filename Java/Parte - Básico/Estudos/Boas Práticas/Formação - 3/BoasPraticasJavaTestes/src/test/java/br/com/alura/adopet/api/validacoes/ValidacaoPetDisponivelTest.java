@@ -12,34 +12,44 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @ExtendWith(MockitoExtension.class)
 class ValidacaoPetDisponivelTest {
 
     @InjectMocks
     private ValidacaoPetDisponivel validacao;
-
     @Mock
     private PetRepository petRepository;
 
     @Mock
     private Pet pet;
-
     @Mock
     private SolicitacaoAdocaoDto dto;
 
     @Test
-    void deveriaPermitirsoliciataoPet() {
+    void deveriaPermitirSolicitacaoDeAdocaoPet(){
+
+        //ARRANGE
         BDDMockito.given(petRepository.getReferenceById(dto.idPet())).willReturn(pet);
         BDDMockito.given(pet.getAdotado()).willReturn(false);
 
+
+
+        //ASSERT + ACT
         Assertions.assertDoesNotThrow(() -> validacao.validar(dto));
     }
 
     @Test
-    void naoDeveriaPermitirsoliciataoPet() {
+    void naoDeveriaPermitirSolicitacaoDeAdocaoPet(){
+
+        //ARRANGE
         BDDMockito.given(petRepository.getReferenceById(dto.idPet())).willReturn(pet);
         BDDMockito.given(pet.getAdotado()).willReturn(true);
 
+
+
+        //ASSERT + ACT
         Assertions.assertThrows(ValidacaoException.class,() -> validacao.validar(dto));
     }
 
