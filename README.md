@@ -1,99 +1,88 @@
-Beleza! Aqui vai o README final com índice clicável, organização caprichada e highlights dos seus projetos. Ficou top para seu portfólio!
-
----
-
-# 🚀 Back-End Projects by kalebzaki4
+# 🚀 Estudos e Projetos — Por kalebzaki
 
 ---
 
 ## Índice
 
-* [Aviso Importante](#-avisso-importante)
-* [Sobre o Repositório](#-sobre-o-repositório)
-* [Tecnologias & Projetos Atuais](#-tecnologias--projetos-atuais)
-* [Como Começar](#-como-começar)
-* [Como Contribuir](#-como-contribuir)
-* [Licença](#-licença)
-* [Sobre o Autor](#-sobre-o-autor)
+* [Aviso Importante](#-aviso-importante)  
+* [Sobre o Repositório](#-sobre-o-repositório)  
+* [Tecnologias & Estrutura](#-tecnologias--estrutura)  
+* [Como Começar](#-como-começar)  
+* [Dicas de Estudo](#-dicas-de-estudo)  
+* [Como Contribuir](#-como-contribuir)  
+* [Licença](#-licença)  
+* [Sobre o Autor](#-sobre-o-autor)  
 
 ---
 
 ## ⚠️ Aviso Importante
 
-Este repositório reúne meus projetos de estudos e experimentação em back-end usando **Java**, **JavaScript (Node.js)**, **Python**, e até **C#**! Tudo 100% aberto e pronto para você usar, adaptar e contribuir sem burocracia.
+Este repositório começou como um espaço para estudar **Java** do básico ao avançado,  
+mas acabou crescendo para incluir outras linguagens e tecnologias como **Node.js**, **GraphQL** e mais.  
 
-Seja para aprendizado, inspiração ou colaboração, fique à vontade para explorar, clonar e melhorar!
+Se você também quer aprender, está no lugar certo. Todo o conteúdo é aberto e organizado para que qualquer pessoa possa acompanhar no seu ritmo.
 
 ---
 
 ## 📚 Sobre o Repositório
 
-Aqui está um painel dinâmico da minha evolução como desenvolvedor back-end — com projetos ativos, atualizados e organizados por tecnologia e finalidade.
+Você encontrará:
 
-* Foco em **boas práticas**, arquitetura limpa e diversidade técnica.
-* Projetos que vão desde APIs REST simples até integrações com GraphQL e sistemas mais completos.
-* Um espaço que reflete aprendizado constante e vontade de compartilhar conhecimento.
-
----
-
-## 🛠️ Tecnologias & Projetos Atuais
-
-| Tecnologia      | Projetos em Destaque                                           
-| --------------- | --------------------------------------------------------------- 
-| **C# / .NET 8** | Projeto atualizado para .NET 8 com melhorias no welcome message 
-| **Java**        | ScreenSound (API musical) com melhorias recentes                
-| **JavaScript**  | Estudos GraphQL e Consumo de API                                
-| **Python**      | SaborExpress — sistema delivery completo                        
-| **C**           | Atualizações sincronizadas com .NET 8                          
+* Conteúdos organizados por **linguagem e nível**.
+* Pastas numeradas no caso de cursos sequenciais (ex.: Java Parte 1, Parte 2…).
+* Projetos práticos para aplicar o que foi aprendido.
+* Exercícios comentados para facilitar a compreensão.
 
 ---
 
 ## 🎯 Como Começar
 
-1. Clone o repositório:
+1. **Clone o repositório**:
 
    ```bash
-   git clone https://github.com/kalebzaki4/back-end.git
+   git clone https://github.com/kalebzaki/java-estudos.git
    ```
-2. Entre no diretório do projeto desejado:
+2. **Abra no seu editor** (VS Code, IntelliJ IDEA, Eclipse, etc.).
+3. Entre na pasta da **tecnologia** que deseja estudar.
+4. Siga a ordem sugerida dentro de cada pasta.
+5. Rode, modifique e teste os exemplos.
 
-   ```bash
-   cd back-end/<nome-do-projeto>
-   ```
-3. Siga as instruções detalhadas no README de cada projeto para configurar e rodar localmente.
-4. Explore, aprenda, modifique e crie!
+---
+
+## 💡 Dicas de Estudo
+
+* Siga o passo a passo dentro de cada pasta.
+* Leia os comentários nos códigos para entender a lógica.
+* Modifique os exemplos e crie variações para fixar o conteúdo.
+* Ao estudar várias tecnologias, compare conceitos semelhantes entre elas.
 
 ---
 
 ## 🤝 Como Contribuir
 
-Adoro receber contribuições — mesmo as pequenas! Aqui vai o processo:
-
-1. Faça fork deste repositório.
-2. Crie um branch descritivo para sua alteração:
+1. Faça um **fork** deste repositório.
+2. Crie uma **branch** descritiva:
 
    ```bash
-   git checkout -b feature/minha-contribuicao
+   git checkout -b melhoria/exemplo-xyz
    ```
-3. Faça commits claros e objetivos:
+3. Faça suas alterações e **commit**:
 
    ```bash
-   git commit -m "Descrição da alteração"
+   git commit -m "Adicionado exemplo de API GraphQL"
    ```
-4. Envie um pull request para revisão.
-
-Qualquer dúvida, só chamar!
+4. Abra um **pull request** para revisão.
 
 ---
 
 ## 📄 Licença
 
-Todos os projetos estão sob a [MIT License](LICENSE), garantindo liberdade para usar, modificar e distribuir, mantendo os créditos.
+Este conteúdo está sob a [MIT License](LICENSE).  
+Você é livre para usar, modificar e distribuir, desde que mantenha os créditos.
 
 ---
 
 ## 👨‍💻 Sobre o Autor
 
-Eu sou [kalebzaki4](https://github.com/kalebzaki4), um apaixonado por back-end que está sempre evoluindo e compartilhando conhecimento. Vamos construir juntos?
-
----
+Eu sou [kalebzaki](https://github.com/kalebzaki), apaixonado por programação e sempre aprendendo novas tecnologias.  
+Este repositório é meu laboratório de estudos e também um espaço aberto para ajudar quem quer aprender junto.
