@@ -54,4 +54,13 @@ public class LoginTest {
             browser.findElement(By.id("usuario-logado"));
         });
     }
+
+    public void naoDeveriaAcessarPaginaRestirtaSemEstarLogado() {
+        browser.navigate().to("http://localhost:8080/leiloes/2");
+
+        Assert.assertTrue(browser.getCurrentUrl().equals("http://localhost:8080/login"));
+        Assert.assertThrows( NotFoundException.class , () -> {;
+            browser.findElement(By.id("usuario-logado"));
+        });
+    }
 }
